@@ -9,5 +9,5 @@ suite 'Klondike', ->
   test 'deal', ->
 
   test 'createDeck', ->
-    d = k1.createDeck()
-    eq d.length, 52
+    deck = k1.createDeck()
+    deck.length.should.equal 52
