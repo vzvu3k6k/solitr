@@ -2,9 +2,11 @@ This is the source code for [solitr.com](http://www.solitr.com/).
 
 ## Testing
 
-To run the test suite, type `bundle exec rake konacha:server` and point your
-browser at the URL it prints. The test files are located in the
-`spec/javascripts` directory.
+Solitr uses [Konacha](https://github.com/jfirebaugh/konacha) for testing. To
+run the test suite, type `bundle exec rake konacha:run`. For development, it's
+easier to run `bundle exec rake konacha:serve` and run the tests in the browser
+(http://localhost:3500). The test files are located in the `spec/javascripts`
+directory.
 
 There are not many tests yet, but we are adding them as we go. Probably the
 easiest (and also most important) part to test is the data models, because they
