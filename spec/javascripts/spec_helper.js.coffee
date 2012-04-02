@@ -1,6 +1,6 @@
-setup ->
+beforeEach ->
   @oldRootElement = App.rootElement
   App.rootElement = '#konacha'
 
-teardown ->
+afterEach ->
   App.rootElement = @oldRootElement

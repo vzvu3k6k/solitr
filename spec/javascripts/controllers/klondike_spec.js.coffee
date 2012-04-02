@@ -1,9 +1,9 @@
 #= require spec_helper
 #= require controllers
 
-suite 'Klondike Controllers', ->
-  setup ->
+describe 'Klondike Controllers', ->
+  beforeEach ->
     @gameController = new App.Controllers.KlondikeTurnOne
 
-  test 'has widgets', ->
+  it 'has widgets', ->
     assert.ok $('#konacha .redealImage').length

@@ -1,13 +1,13 @@
 #= require spec_helper
 #= require models
 
-suite 'Klondike', ->
+describe 'Klondike', ->
   k1 = new App.Models.KlondikeTurnOne
 
-  test 'constructor', ->
+  it 'constructor', ->
 
-  test 'deal', ->
+  it 'deal', ->
 
-  test 'createDeck', ->
+  it 'createDeck', ->
     deck = k1.createDeck()
     deck.length.should.equal 52
