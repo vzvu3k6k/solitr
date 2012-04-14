@@ -515,10 +515,9 @@ $.widget 'ui.rawdraggable', $.ui.mouse,
     @_mouseInit()
   _destroy: ->
     @_mouseDestroy()
+    @element.removeClass('ui-rawdraggable')
   _create: ->
     @element.addClass('ui-rawdraggable')
-  _destroy: ->
-    @element.removeClass('ui-rawdraggable')
   _mouseStart: (e) -> @options.mouseStart(e)
   _mouseDrag: (e) -> @options.mouseDrag(e)
   _mouseStop: (e) -> @options.mouseStop(e)
