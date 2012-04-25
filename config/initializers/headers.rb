@@ -11,8 +11,10 @@ module Solitr
         duration = nil
         if Rails.env.production?
           case env['REQUEST_PATH']
-          when %r{^/assets/.*-[0-9a-f]{32,}}
+          when %r{\A/assets/.*-[0-9a-f]{32,}}
             duration = 1.month
+          when %r{\A/favicon.ico\z}
+            duration = 1.week
           else
             duration = 1.hour
           end
