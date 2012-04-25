@@ -13,6 +13,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
   gem 'less-rails-bootstrap'
+  gem 'therubyracer' # required by less
 end
 
 gem 'jquery-rails'
