@@ -507,17 +507,17 @@ class App.Controllers.KlondikeTurnThree extends App.Controllers.Klondike
 $.widget 'ui.rawdraggable', $.ui.mouse,
   widgetEventPrefix: 'rawdraggable'
   options:
-    mouseCapture: (e) -> true # capture everything by default
     mouseStart: (e) ->
     mouseDrag: (e) ->
     mouseStop: (e) ->
+    mouseCapture: (e) -> true # capture everything by default
   _init: ->
     @_mouseInit()
+  _create: ->
+    @element.addClass('ui-rawdraggable')
   _destroy: ->
     @_mouseDestroy()
     @element.removeClass('ui-rawdraggable')
-  _create: ->
-    @element.addClass('ui-rawdraggable')
   _mouseStart: (e) -> @options.mouseStart(e)
   _mouseDrag: (e) -> @options.mouseDrag(e)
   _mouseStop: (e) -> @options.mouseStop(e)
