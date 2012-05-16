@@ -1,7 +1,10 @@
-.navbar.navbar-top
+.navbar.navbar-fixed-top
   .navbar-inner
     .container-fluid
-      /! <a class="brand" href="/">Solitr</a>
+      / Do not link the brand, as it's easy to accidentally click it, causing a
+      / page reload and losing the current game
+      span.brand
+        | Solitr
       ul.nav
         li.dropdown
           a.dropdown-toggle data-toggle="dropdown" href="#"
