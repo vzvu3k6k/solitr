@@ -2,6 +2,13 @@
 
 This is the source code for [solitr.com](http://www.solitr.com/).
 
+## Running
+
+```bash
+bundle install
+rails server
+```
+
 ## Testing
 
 Solitr uses [Konacha](https://github.com/jfirebaugh/konacha) for testing. To
