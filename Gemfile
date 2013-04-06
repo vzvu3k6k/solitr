@@ -16,8 +16,8 @@ group :assets do
   gem 'therubyracer' # required by less
 end
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails', '~> 2.0.2'
+gem 'jquery-ui-rails', '~> 1.0'
 gem 'active_link_to'
 gem 'slim'
 gem 'markdown-rails'
