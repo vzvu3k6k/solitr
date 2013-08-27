@@ -2,6 +2,10 @@
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-26841383-1']);
+  <%- if Rails.env.development? %>
+    // Set cookies even on localhost
+    _gaq.push(['_setDomainName', 'none']);
+  <% end %>
   _gaq.push(['_trackPageview']);
 
   (function() {
