@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    = yield :head
+    = yield :experiment if Rails.env.production?
     title= @title
     = render :partial => 'layouts/preload'
     = stylesheet_link_tag "application"
