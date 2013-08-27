@@ -22,12 +22,10 @@ module Solitr
 
         headers['Date'] = Time.now.httpdate
         if duration
-          headers['Expires'] = (duration == 0 ? '-1' : (Time.now + duration).httpdate)
           headers['Cache-Control'] = "public, max-age=#{duration.to_i}, must-revalidate"
         else
           headers['Pragma'] = 'no-cache'
           headers['Cache-Control'] = 'no-cache'
-          headers['Expires'] = '-1'
           # Just to be sure, since sometimes ETag and Last-Modified headers are
           # messed up by Sprockets
           if Rails.env.development?
