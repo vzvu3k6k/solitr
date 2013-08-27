@@ -11,4 +11,8 @@ window._fail = (messages...) ->
 
 window.p = (expressions...) ->
   window.x = expressions[expressions.length - 1]
-  window.console and console.log(expressions...)
+  if window.console?.log?
+    # IE doesn't support console.log.apply
+    # http://stackoverflow.com/a/5473193/525872
+    log = Function.prototype.bind.call(console.log, console)
+    log(expressions...)
