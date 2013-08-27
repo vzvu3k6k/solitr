@@ -1,0 +1,63 @@
+#= require jquery
+#= require jquery.cookie
+#= require helpers
+
+class App.Events
+  @_trackEvent: (args...) ->
+    p '_trackEvent', args...
+    try
+      _gaq.push(['_trackEvent', args...])
+    catch error
+
+  @beginGame: ->
+    @_trackEvent('game', 'begin')
+
+  @stayOnSite: ->
+    # Did not bounce
+    @_trackEvent('general', 'stay')
+
+  @initialVisit: not ($.cookie('__utmb') and $.cookie('__utmc'))
+
+  # Call stayOnSite after 30 seconds, even across reloads.
+  @scheduleInitialVisitBeacon: ->
+    cookieOptions = (expiresInSeconds) ->
+      opts =
+        path: '/'
+        <% if Rails.env.production? %>domain: 'solitr.com'<% end %>
+      if expiresInSeconds
+        opts.expires = new Date(Date.now() + expiresInSeconds * 1000)
+      opts
+
+    beaconDelay = 30
+
+    if App.Events.initialVisit
+      $.cookie 'solitr_initial_short', '_', cookieOptions(beaconDelay)
+      $.cookie 'solitr_initial_long', '_', cookieOptions(60 * 30)
+
+    # We wait for the short cookie to disappear while the long cookie is still
+    # around. The long cookie is used to ensure that we still send a beacon
+    # even if the short cookie expires during a page reload.
+    #
+    # If no `initial` cookies are around, this will do nothing.
+    intervalId = setInterval ->
+      if $.cookie('solitr_initial_long')
+        if not $.cookie('solitr_initial_short')
+          # p 'No short cookie'
+          removeCookies()
+          App.Events.stayOnSite()
+        # else
+        #   p 'Waiting for short cookie to disappear'
+      else
+        # p 'No long cookie'
+        removeCookies()
+    , 1000
+
+    removeCookies = ->
+      $.removeCookie('solitr_initial_long', cookieOptions())
+      $.removeCookie('solitr_initial_short', cookieOptions())
+      # Clear interval just in case we didn't remove the cookies successfully.
+      clearInterval intervalId
+
+<% unless Rails.env.test? %> # No non-deterministic business in tests
+App.Events.scheduleInitialVisitBeacon()
+<% end %>
