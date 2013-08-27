@@ -16,7 +16,7 @@ module Solitr
           when %r{\A/favicon.ico\z}
             duration = 1.week
           else
-            duration = 1.hour
+            duration = 10.minutes
           end
         end
 
