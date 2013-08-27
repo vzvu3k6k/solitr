@@ -10,5 +10,5 @@ window._fail = (messages...) ->
   _assert(false, messages...)
 
 window.p = (expressions...) ->
-  for exp in expressions
-    console.log(window.x = exp)
+  window.x = expressions[expressions.length - 1]
+  window.console and console.log(expressions...)
