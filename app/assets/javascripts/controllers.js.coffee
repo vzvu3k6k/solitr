@@ -195,6 +195,9 @@ class App.Controllers.Klondike
 
   processUserCommand: (cmd) ->
     @removeEventHandlers()
+    unless @model.hasBegun
+      @model.hasBegun = true
+      App.Events.beginGame()
     @processCommand(cmd)
     if nextCmd = @model.nextAutoCommand()
       setTimeout (=> @processUserCommand(nextCmd)), @nextAnimationDelay(cmd)
