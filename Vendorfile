@@ -1,3 +1,4 @@
 file 'vendor/assets/javascripts/underscore.js', 'http://documentcloud.github.com/underscore/underscore.js'
 file 'vendor/assets/javascripts/json2.js', 'https://raw.github.com/douglascrockford/JSON-js/master/json2.js'
 file 'vendor/assets/javascripts/jquery.cookie.js', 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js'
+file 'vendor/assets/javascripts/jquery.idle-timer.js', 'https://raw.github.com/mikesherov/jquery-idletimer/master/dist/idle-timer.js'

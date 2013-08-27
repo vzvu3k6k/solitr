@@ -16,6 +16,9 @@ class App.Events
     # Did not bounce
     @_trackEvent('general', 'stay')
 
+  @activeBeacon: ->
+    @_trackEvent('general', 'active')
+
   @initialVisit: not ($.cookie('__utmb') and $.cookie('__utmc'))
 
   # Call stayOnSite after 30 seconds, even across reloads.
@@ -58,6 +61,17 @@ class App.Events
       # Clear interval just in case we didn't remove the cookies successfully.
       clearInterval intervalId
 
+  @scheduleActiveBeacon: ->
+    activeBeaconInterval = 60
+    idleTimeout = 30
+    $ ->
+      $.idleTimer(idleTimeout * 1000)
+      setInterval ->
+        if $(document).data('idleTimer') == 'active'
+          App.Events.activeBeacon()
+      , activeBeaconInterval * 1000
+
 <% unless Rails.env.test? %> # No non-deterministic business in tests
 App.Events.scheduleInitialVisitBeacon()
+App.Events.scheduleActiveBeacon()
 <% end %>
