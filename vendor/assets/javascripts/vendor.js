@@ -1,4 +1,4 @@
 // For TransformJS
 //= require jquery
 //
-//= require_tree .
+//= require_directory .

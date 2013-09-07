@@ -5,6 +5,8 @@ html
     title= @title
     = render :partial => 'layouts/preload'
     = stylesheet_link_tag "application"
+    /[if lt IE 9]
+      = javascript_include_tag 'shims'
     = javascript_include_tag "application"
     = javascript_include_tag 'https://cdn.firebase.com/v0/firebase.js', async: true unless Rails.env.test?
     link href="http://fonts.googleapis.com/css?family=Handlee" rel="stylesheet" type="text/css"
