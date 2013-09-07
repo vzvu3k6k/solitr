@@ -19,42 +19,49 @@ class App.Events
       _gaq.push(['_trackEvent', args...])
     catch error
 
-  @_totalChi: 0
+  @_metricTotals: {}
 
-  @_addChi: (x) ->
-    p 'Adding Chi', x
-    @_totalChi += x
-    @_flushChi()
+  @_addToMetric: (metricName, x) ->
+    p 'Adding', metricName, x
+    @_metricTotals[metricName] ||= 0
+    @_metricTotals[metricName] += x
+    @_flushMetric(metricName)
 
-  @_flushChi: ->
+  @_metricRetryTimers: {}
+
+  @_flushMetric: (metricName) ->
     if firebase = @_firebase()
-      p 'Flushing total Chi', @_totalChi
-      if @_retryTimer?
-        clearInterval @_retryTimer
-        @_retryTimer = null
+      p 'Flushing', metricName, @_metricTotals[metricName]
+      if @_metricRetryTimers[metricName]?
+        clearInterval @_metricRetryTimers[metricName]
+        @_metricRetryTimers[metricName] = null
       try
-        chiRef = firebase.child('chi')
-        @_chiName ?= chiRef.push().name()
-        chiRef.child(@_chiName).set(@_totalChi)
-      catch erro
+        metricRef = firebase.child(metricName)
+        @_metricUniqueId ?= metricRef.push().name()
+        metricRef.child(@_metricUniqueId).set(@_metricTotals[metricName])
+      catch error
     else
-      p 'Could not flush Chi, retrying soon'
-      @_retryTimer ?= setInterval(=>
-        @_addChi(0)
+      p 'Could not flush metrics, retrying soon'
+      @_metricRetryTimers[metricName] ?= setInterval(=>
+        @_flushMetric(metricName)
       , 500)
 
   @beginGame: ->
     @_trackEvent('game', 'begin')
-    @_addChi(0.5)
+    @_addToMetric('beginGame', 1)
+    @_addToMetric('chi', 0.5)
 
   @stayOnSite: ->
     # Did not bounce
     @_trackEvent('general', 'stay')
-    @_addChi(50)
+    @_addToMetric('stayOnSite', 1)
+    @_addToMetric('chi', 50)
 
   @activeBeacon: ->
+    minutes = @_activeBeaconInterval / 60
     @_trackEvent('general', 'active')
-    @_addChi(@_activeBeaconInterval / 60)
+    @_addToMetric('active', minutes)
+    @_addToMetric('chi', minutes)
 
   @initialVisit: not ($.cookie('__utmb') and $.cookie('__utmc'))
 
