@@ -3,3 +3,4 @@ file 'vendor/assets/javascripts/json2.js', 'https://raw.github.com/douglascrockf
 file 'vendor/assets/javascripts/jquery.cookie.js', 'https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js'
 file 'vendor/assets/javascripts/jquery.idle-timer.js', 'https://raw.github.com/mikesherov/jquery-idletimer/master/dist/idle-timer.js'
 file 'vendor/assets/javascripts/shims/es5-shim.js', 'https://raw.github.com/kriskowal/es5-shim/master/es5-shim.js'
+file 'vendor/assets/javascripts/shims/html5shiv.js', 'https://raw.github.com/aFarkas/html5shiv/master/src/html5shiv.js'
