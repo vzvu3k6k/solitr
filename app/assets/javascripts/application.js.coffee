@@ -1,3 +1,4 @@
+#= require services/ga
 #= require vendor
 #= require twitter/bootstrap/dropdown
 #= require twitter/bootstrap/modal

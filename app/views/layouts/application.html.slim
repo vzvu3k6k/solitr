@@ -5,8 +5,8 @@ html
     title= @title
     = render :partial => 'layouts/preload'
     = stylesheet_link_tag "application"
-    = javascript_include_tag 'https://cdn.firebase.com/v0/firebase.js', async: true unless Rails.env.test?
     = javascript_include_tag "application"
+    = javascript_include_tag 'https://cdn.firebase.com/v0/firebase.js', async: true unless Rails.env.test?
     link href="http://fonts.googleapis.com/css?family=Handlee" rel="stylesheet" type="text/css"
     -# Google Analytics must come late, so we can check for cookies before it loads
     = render :partial => 'layouts/ga' if Rails.env.production?
