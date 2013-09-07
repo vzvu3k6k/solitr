@@ -1,3 +1,4 @@
+#= require services/muscula
 #= require services/ga
 #= require vendor
 #= require twitter/bootstrap/dropdown
