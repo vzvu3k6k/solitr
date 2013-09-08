@@ -3,6 +3,9 @@
 #= require helpers
 #= require services/ga
 
+App.commit = <%= (File.read('.commit').presence || `git rev-parse HEAD`.presence || 'unknown')[0...10].to_json %>
+p 'Solitr version', App.commit
+
 class App.Events
   @_firebase: ->
     # Returns undefined if Firebase or GA is not yet loaded.
@@ -10,7 +13,7 @@ class App.Events
       try
         @_firebaseRef ?= \
           new Firebase('https://solitr-analytics.firebaseio.com')
-            .child(@_visitorId)
+            .child(@_visitorId).child(App.commit)
       catch error
 
   @_trackEvent: (args...) ->
