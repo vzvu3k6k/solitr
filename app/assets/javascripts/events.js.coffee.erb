@@ -16,10 +16,10 @@ class App.Events
             .child(@_visitorId).child(App.commit)
       catch error
 
-  @_trackEvent: (args...) ->
-    p '_trackEvent', args...
+  @_trackEvent: (category, action) ->
+    p '_trackEvent', category, action
     try
-      _gaq.push(['_trackEvent', args...])
+      _gaq.push(['_trackEvent', category, action])
     catch error
 
   @_metricTotals: {}
