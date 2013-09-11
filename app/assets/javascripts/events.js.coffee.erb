@@ -47,7 +47,7 @@ class App.Events
       p 'Could not flush metrics, retrying soon'
       @_metricRetryTimers[metricName] ?= setInterval(=>
         @_flushMetric(metricName)
-      , 500)
+      , 2000)
 
   @beginGame: ->
     @_trackEvent('game', 'begin')
