@@ -4,3 +4,6 @@ file 'vendor/assets/javascripts/jquery.cookie.js', 'https://raw.github.com/carha
 file 'vendor/assets/javascripts/jquery.idle-timer.js', 'https://raw.github.com/mikesherov/jquery-idletimer/master/dist/idle-timer.js'
 file 'vendor/assets/javascripts/shims/es5-shim.js', 'https://raw.github.com/kriskowal/es5-shim/master/es5-shim.js'
 file 'vendor/assets/javascripts/shims/html5shiv.js', 'https://raw.github.com/aFarkas/html5shiv/master/src/html5shiv.js'
+file 'vendor/assets/javascripts/jquery.ui.touch-punch.js', 'https://raw.github.com/furf/jquery-ui-touch-punch/master/jquery.ui.touch-punch.js' do |path|
+  rewrite(path) { |content| "//= require jquery.ui.mouse\n\n" + content }
+end
