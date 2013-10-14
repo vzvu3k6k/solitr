@@ -8,7 +8,6 @@ html
     /[if lt IE 9]
       = javascript_include_tag 'shims'
     = javascript_include_tag "application"
-    = javascript_include_tag 'https://cdn.firebase.com/v0/firebase.js', async: true if Rails.env.development?
     link href="http://fonts.googleapis.com/css?family=Handlee" rel="stylesheet" type="text/css"
     -# Google Analytics must come late, so we can check for cookies before it loads
     = render :partial => 'layouts/ga' if Rails.env.production?
