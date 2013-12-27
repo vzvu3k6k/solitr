@@ -32,4 +32,5 @@ end
 
 group :test, :development do
   gem 'konacha'
+  gem 'selenium-webdriver'
 end
