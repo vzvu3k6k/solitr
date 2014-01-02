@@ -1,5 +1,3 @@
-[![Build Status](https://secure.travis-ci.org/joliss/solitr.png?branch=master)](http://travis-ci.org/joliss/solitr)
-
 This is the source code for [solitr.com](http://www.solitr.com/).
 
 ## Running
