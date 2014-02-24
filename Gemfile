@@ -2,7 +2,7 @@ ruby '1.9.3'
 
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.16'
+gem 'rails', '~> 3.2.17'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -22,6 +22,7 @@ gem 'jquery-rails', '~> 2.0.2'
 gem 'jquery-ui-rails', '~> 1.0'
 gem 'active_link_to'
 gem 'slim'
+gem 'tilt', '~> 1.4.1'
 gem 'markdown-rails'
 
 gem 'thin'
